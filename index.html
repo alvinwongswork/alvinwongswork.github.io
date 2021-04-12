@@ -10,7 +10,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgb(0, 0, 0);
     z-index: 9999;
     display: flex;
     justify-content: center;
@@ -27,7 +27,7 @@
 <body style="margin : 0px; overflow: hidden;">
   <!-- minimal loader shown until image descriptors are loaded. Loading may take a while according to the device computational power -->
   <div class="arjs-loader">
-    <div>Loading, please wait...</div>
+    <div>正在载入，请稍候...</div>
   </div>
 
   <!-- a-frame scene -->
@@ -52,7 +52,7 @@
         <a-entity
             gltf-model="flintlock-pistol-3d-model/scene.gltf"
             scale="5 5 5"
-            position="50 150 0"
+            position="50 50 0"
         >
         </a-entity>
     </a-nft>
