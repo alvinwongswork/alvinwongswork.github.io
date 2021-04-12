@@ -22,12 +22,30 @@
     font-size: 1.25em;
     color: rgb(255, 255, 255);
   }
+
+  .accress-camera{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;    
+  }
+
+  .accress-camera div{
+      text-align: center;
+      font: size 1.5em;
+      color: blue;
+  }
 </style>
 
 <body style="margin : 0px; overflow: hidden;">
   <!-- minimal loader shown until image descriptors are loaded. Loading may take a while according to the device computational power -->
   <div class="arjs-loader">
     <div>正在载入，请稍候...</div>
+  </div>
+
+  <div class="accress-camera">
+      <div>按一下启动摄像头</div>
   </div>
 
   <!-- a-frame scene -->
