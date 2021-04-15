@@ -188,16 +188,18 @@
         if (width && height) {
             resizedCanvas.width = width;
             resizedCanvas.height = height;
-            resizedContext.drawImage(video, 0, 0, height / 2, width / 2);
+            resizedContext.drawImage(video, 0, 0, width, height);
             
-            /*if (width > height) {
+            if (width > height) {
                 resizedContext.drawImage(aScene, 0, 0, width, height);
             } else {
                 var scale = height / width;
                 var scaledWidth = height * scale;
                 var marginLeft = (width - scaledWidth) / 2;
+                
+                console.log("Scale: " + scale + " ScaledWidth: " + scaledWidth + " MarginLeft: " + marginLeft);
                 resizedContext.drawImage(aScene, marginLeft, 0, scaledWidth, height);
-            }*/
+            }
             return resizedCanvas.toDataURL('image/png');
         }
     }
