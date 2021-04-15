@@ -149,7 +149,7 @@
     take_photo_btn.addEventListener("click", function (e) {
         e.preventDefault();
         var video = document.querySelector('video');
-        var snap = takeSnapshot(video);
+        var snap = takeSnapshot(video, document.body.offsetWidth, document.body.offsetHeight);
 
         image.setAttribute('src', snap);
         image.classList.add('visible');
@@ -171,11 +171,13 @@
 
     });
 
-    function takeSnapshot(video) {
+    function takeSnapshot(video, videoWidth, videoHeight) {
         var resizedCanvas = document.createElement("canvas");
         var resizedContext = resizedCanvas.getContext("2d");
-        var width = video.videoWidth;
-        var height = video.videoHeight;
+        //var width = video.videoWidth;
+        //var height = video.videoHeight;
+        width = videoWidth;
+        height = videoHeight;
         var aScene = document.querySelector("a-scene").components.screenshot.getCanvas("perspective");
         console.log("Capture Width" + width);
         console.log("Capture Height" + height);
