@@ -1,9 +1,7 @@
 <!-- import a-frame and a-frame nft -->
+<script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js"></script>
 <script src="https://raw.githack.com/AR-js-org/AR.js/3.3.1/aframe/build/aframe-ar.js"></script>
 <script src="https://raw.githack.com/AR-js-org/AR.js/3.3.1/aframe/build/aframe-ar-nft.js"></script>
-
-<!-- import AR.js -->>
-<script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js"></script>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <!-- style for the loader -->
@@ -40,17 +38,6 @@
       font: size 1.5em;
       color: rgb(0, 0, 0);
   }
-
-  #snap {
-        max-width: 100%;
-        height: auto;
-        display: block;;
-        visibility: hidden;
-  }
-
-  #snap.visable{
-      visibility: visible;
-  }
 </style>
 
 <body style="margin : 0px; overflow: hidden;">
@@ -61,14 +48,7 @@
 
     <div class="accress-camera">
         <div>按一下启动摄像头</div>
-    </div>
-
-    <!--div class="ui">
-        <img id="snap">
-        <a href="#" id="delete-photo" title="Delete Photo" class="disabled"><i class="material-icons">delete</i></a>
-        <a href="" id="take-photo" title="Take Photo"><i class="material-icons">photo_camera</i></a>
-        <a href="#" id="download-photo" download="selfie.png" title="Save Photo" class="disabled" target="_blank"><i class="material-icons">file_download</i></a>
-    </div--> 
+    </div>   
 
   <!-- a-frame scene -->
   <a-scene
@@ -102,67 +82,3 @@
     <a-entity camera></a-entity>
   </a-scene>
 </body>
-
-<script>
-    var image = document.querySelector('#snap');
-    var take_photo_btn = document.querySelector('#take-photo');
-    var delete_photo_btn = document.querySelector('#delete-photo');
-    var download_photo_btn = document.querySelector('#download-photo');
-
-    take_photo_btn.addEventListener("click", function (e) {
-        e.preventDefault();
-        var video = document.querySelector('video');
-        var snap = takeSnapshot(video);
-
-        //スナップショット表示.
-        image.setAttribute('src', snap);
-        image.classList.add('visible');
-
-        // 削除ボタンと保存ボタン有効
-        delete_photo_btn.classList.remove("disabled");
-        download_photo_btn.classList.remove("disabled");
-
-        // 保存ボタンにスナップショットを渡す
-        download_photo_btn.href = snap;
-    });
-
-    delete_photo_btn.addEventListener("click", function(e){
-
-        e.preventDefault();
-
-        // スナップショットを隠す
-        image.setAttribute('src', "");
-        image.classList.remove("visible");
-
-        // 削除ボタンと保存ボタン無効
-        delete_photo_btn.classList.add("disabled");
-        download_photo_btn.classList.add("disabled");
-
-    });
-
-    function takeSnapshot(video) {
-        var resizedCanvas = document.createElement("canvas");
-        var resizedContext = resizedCanvas.getContext("2d");
-        var width = video.videoWidth;
-        var height = video.videoHeight;
-        var aScene = document.querySelector("a-scene").components.screenshot.getCanvas("perspective");
-
-        if (width && height) {
-            resizedCanvas.width = width;
-            resizedCanvas.height = height;
-            resizedContext.drawImage(video, 0, 0, width, height);
-
-            if (width > height) {
-                resizedContext.drawImage(aScene, 0, 0, width, height);
-            } else {
-                var scale = height / width;
-                var scaledWidth = height * scale;
-                var marginLeft = (width - scaledWidth) / 2;
-                resizedContext.drawImage(aScene, marginLeft, 0, scaledWidth, height);
-            }
-            return resizedCanvas.toDataURL('image/png');
-        }
-    }
-
-    //-->
-</script>
