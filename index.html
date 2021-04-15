@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
 <!-- import a-frame and a-frame nft -->
 <script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js"></script>
 <script src="https://raw.githack.com/AR-js-org/AR.js/3.3.1/aframe/build/aframe-ar-nft.js"></script>
@@ -17,7 +20,7 @@
         text-align: center;
         box-sizing: border-box;
     }
-    
+
     .ui a {
         display: inline-block;
         width: 60px;
@@ -85,6 +88,7 @@
         visibility: visible;
     }
 </style>
+</head>
 
 <body style="margin : 0px; overflow: hidden;">
   <!-- minimal loader shown until image descriptors are loaded. Loading may take a while according to the device computational power -->
@@ -135,3 +139,61 @@
     <a-entity camera></a-entity>
   </a-scene>
 </body>
+
+<script>
+    var image = document.querySelector('#snap');
+    var take_photo_btn = document.querySelector('#take-photo');
+    var delete_photo_btn = document.querySelector('#delete-photo');
+    var download_photo_btn = document.querySelector('#download-photo');
+
+    take_photo_btn.addEventListener("click", function (e) {
+        e.preventDefault();
+        var video = document.querySelector('video');
+        var snap = takeSnapshot(video);
+
+        image.setAttribute('src', snap);
+        image.classList.add('visible');
+
+        delete_photo_btn.classList.remove("disabled");
+        download_photo_btn.classList.remove("disabled");
+
+        download_photo_btn.href = snap;
+    });
+
+    delete_photo_btn.addEventListener("click", function(e){
+        e.preventDefault();
+
+        image.setAttribute('src', "");
+        image.classList.remove("visible");
+
+        delete_photo_btn.classList.add("disabled");
+        download_photo_btn.classList.add("disabled");
+
+    });
+
+    function takeSnapshot(video) {
+        var resizedCanvas = document.createElement("canvas");
+        var resizedContext = resizedCanvas.getContext("2d");
+        var width = video.videoWidth;
+        var height = video.videoHeight;
+        var aScene = document.querySelector("a-scene").components.screenshot.getCanvas("perspective");
+
+        if (width && height) {
+            resizedCanvas.width = width;
+            resizedCanvas.height = height;
+            resizedContext.drawImage(video, 0, 0, width, height);
+
+            if (width > height) {
+                resizedContext.drawImage(aScene, 0, 0, width, height);
+            } else {
+                var scale = height / width;
+                var scaledWidth = height * scale;
+                var marginLeft = (width - scaledWidth) / 2;
+                resizedContext.drawImage(aScene, marginLeft, 0, scaledWidth, height);
+            }
+            return resizedCanvas.toDataURL('image/png');
+        }
+    }
+</script>
+
+</html>
