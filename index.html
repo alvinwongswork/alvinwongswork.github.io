@@ -4,39 +4,86 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <!-- style for the loader -->
-<style>    
-  .arjs-loader {
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.8);
-    z-index: 9999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+<style>
+    .ui {
+        position: absolute;
+        z-index: 100;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: auto;
+        margin: 0;
+        padding: 10px 15px 30px;
+        text-align: center;
+        box-sizing: border-box;
+    }
+    
+    .ui a {
+        display: inline-block;
+        width: 60px;
+        height: 60px;
+        background-color: #ffffff;
+        line-height: 100%;
+        color: #303030;
+        margin: 10px 3px;
+        border-radius: 50%;
+        position: relative;
+    }
 
-  .arjs-loader div {
-    text-align: center;
-    font-size: 1.25em;
-    color: rgb(255, 255, 255);
-  }
+    .ui a i {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+    }
 
-  .accress-camera{
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;    
-  }
+    .ui a:active {
+        color: #ff0000;
+    }
 
-  .accress-camera div{
-      text-align: center;
-      font: size 1.5em;
-      color: rgb(0, 0, 0);
-  }
+    .arjs-loader {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.8);
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .arjs-loader div {
+        text-align: center;
+        font-size: 1.25em;
+        color: rgb(255, 255, 255);
+    }
+
+    .accress-camera {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;    
+    }
+
+    .accress-camera div {
+        text-align: center;
+        font: size 1.5em;
+        color: rgb(0, 0, 0);
+    }
+
+    #snap {
+        max-width: 100%;
+        height: auto;
+        display: block;;
+        visibility: hidden;
+    }
+    
+    #snap.visible {
+        visibility: visible;
+    }
 </style>
 
 <body style="margin : 0px; overflow: hidden;">
@@ -47,7 +94,14 @@
 
     <div class="accress-camera">
         <div>按一下启动摄像头</div>
-    </div>   
+    </div>  
+    
+    <div class="ui">
+        <img id="snap">
+        <a href="#" id="delete-photo" title="Delete Photo" class="disabled"><i class="material-icons">delete</i></a>
+        <a href="" id="take-photo" title="Take Photo"><i class="material-icons">photo_camera</i></a>
+        <a href="#" id="download-photo" download="selfie.png" title="Save Photo" class="disabled" target="_blank"><i class="material-icons">file_download</i></a>
+    </div>
 
   <!-- a-frame scene -->
   <a-scene
