@@ -146,18 +146,13 @@
     var delete_photo_btn = document.querySelector('#delete-photo');
     var download_photo_btn = document.querySelector('#download-photo');
 
-    var width = document.body.offsetWidth;
-    var height = document.body.offsetHeight;    
-    var scale = window.devicePixelRatio;       
+    var width = document.body.innerWidth;
+    var height = document.body.innerHeight;    
 
     take_photo_btn.addEventListener("click", function (e) {
         e.preventDefault();
         var video = document.querySelector('video');
-        var snap = takeSnapshot(video, width * scale,  height * scale);
-
-        console.log("Dev Pixel Ratio" + scale);
-        console.log("Window width" +  window.innerWidth);
-        console.log("Window height" +  window.innerHeight);
+        var snap = takeSnapshot(video, width,  height);
 
         image.setAttribute('src', snap);
         image.classList.add('visible');
