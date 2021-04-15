@@ -188,7 +188,7 @@
         if (width && height) {
             resizedCanvas.width = width;
             resizedCanvas.height = height;
-            resizedContext.drawImage(video, 0, 0, width, height);
+            resizedContext.drawImage(video, 0, 0, height / 2, width / 2);
             
             /*if (width > height) {
                 resizedContext.drawImage(aScene, 0, 0, width, height);
