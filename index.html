@@ -149,9 +149,9 @@
     take_photo_btn.addEventListener("click", function (e) {
         e.preventDefault();
         var video = document.querySelector('video');
-        var width = document.body.innerWidth;
-        var height = document.body.innerHeight;    
-        
+        var width = window.innerWidth;
+        var height = window.innerHeight;    
+
         var snap = takeSnapshot(video, width,  height);
 
         image.setAttribute('src', snap);
