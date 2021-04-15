@@ -177,6 +177,8 @@
         var width = video.videoWidth;
         var height = video.videoHeight;
         var aScene = document.querySelector("a-scene").components.screenshot.getCanvas("perspective");
+        console.log("Capture Width" + width);
+        console.log("Capture Height" + height);
 
         if (width && height) {
             resizedCanvas.width = width;
