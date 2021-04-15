@@ -144,14 +144,14 @@
     var image = document.querySelector('#snap');
     var take_photo_btn = document.querySelector('#take-photo');
     var delete_photo_btn = document.querySelector('#delete-photo');
-    var download_photo_btn = document.querySelector('#download-photo');
-
-    var width = document.body.innerWidth;
-    var height = document.body.innerHeight;    
+    var download_photo_btn = document.querySelector('#download-photo');   
 
     take_photo_btn.addEventListener("click", function (e) {
         e.preventDefault();
         var video = document.querySelector('video');
+        var width = document.body.innerWidth;
+        var height = document.body.innerHeight;    
+        
         var snap = takeSnapshot(video, width,  height);
 
         image.setAttribute('src', snap);
