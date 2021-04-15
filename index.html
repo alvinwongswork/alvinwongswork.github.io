@@ -148,16 +148,16 @@
 
     var width = document.body.offsetWidth;
     var height = document.body.offsetHeight;    
-    var scale = window.devicePixelRatio;    
-    console.log("Dev Pixel Ratio" + scale);
-
-    console.log("Window width" +  window.innerWidth);
-    console.log("Window height" +  window.innerHeight);
+    var scale = window.devicePixelRatio;       
 
     take_photo_btn.addEventListener("click", function (e) {
         e.preventDefault();
         var video = document.querySelector('video');
         var snap = takeSnapshot(video, width * scale,  height * scale);
+
+        console.log("Dev Pixel Ratio" + scale);
+        console.log("Window width" +  window.innerWidth);
+        console.log("Window height" +  window.innerHeight);
 
         image.setAttribute('src', snap);
         image.classList.add('visible');
