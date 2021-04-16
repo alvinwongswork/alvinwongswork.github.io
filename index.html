@@ -148,7 +148,7 @@
 
     take_photo_btn.addEventListener("click", function (e) {
         e.preventDefault();
-        var video = document.querySelector('video');
+        var video = document.querySelector('img');
         var width = window.innerWidth;
         var height = window.innerHeight;    
         console.log("Window Width" + width + " Window Height " + height);
@@ -192,13 +192,13 @@
             if (width > height) {
                 resizedContext.drawImage(aScene, 0, 0, width, height);
             } else {
-                resizedContext.drawImage(aScene, 0, 0, width, height);
-                /*var scale = height / width;
+                //resizedContext.drawImage(aScene, 0, 0, width, height);
+                var scale = height / width;
                 var scaledWidth = height * scale;
                 var marginLeft = (width - scaledWidth) / 2;
                 
                 console.log("Scale: " + scale + " ScaledWidth: " + scaledWidth + " MarginLeft: " + marginLeft);
-                resizedContext.drawImage(aScene, marginLeft, 0, scaledWidth, height);*/
+                resizedContext.drawImage(aScene, marginLeft, 0, scaledWidth, height);
             }
             return resizedCanvas.toDataURL('image/png');
         }
