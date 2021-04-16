@@ -147,9 +147,10 @@
     var download_photo_btn = document.querySelector('#download-photo'); 
 
     take_photo_btn.addEventListener("click", function (e) {       
-
+        
         e.preventDefault();
-        var video = document.querySelector('video');
+        //var video = document.querySelector('video');
+        var video = document.querySelector('a-scene').components.screenshot.capture('perspective');
         var width = window.innerWidth;
         var height = window.innerHeight;    
         console.log("Window Width" + width + " Window Height " + height);
